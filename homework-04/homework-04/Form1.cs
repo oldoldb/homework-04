@@ -41,8 +41,8 @@ namespace homework_04
             Label[,] label = new Label[row + 1, col + 1];
             int height = this.Height;
             int width = this.Width;
-            int uheight=50;
-            int uwidth=50;
+            int uheight=30;
+            int uwidth=30;
             Random ra=new Random();
             for (int i = 0; i <= row; i++)
             {
@@ -51,7 +51,7 @@ namespace homework_04
                     label[i, j] = new Label();
                     label[i, j].BorderStyle = BorderStyle.FixedSingle;
                     label[i, j].TextAlign = ContentAlignment.MiddleCenter;
-                    label[i, j].Font = new Font("Courier New", 27, FontStyle.Bold);
+                    label[i, j].Font = new Font("Courier New", 20, FontStyle.Bold);
                     if (map[i, j] == '\0')
                     {
                         label[i, j].Text = Convert.ToString((char)(ra.Next(0, 26) + 'A'));
@@ -86,7 +86,12 @@ namespace homework_04
             string tempstr;
             while ((tempstr = Console.ReadLine()) != null)
             {
-                str.Add(tempstr);
+                char ch = tempstr[0];
+                if (ch >= 'a' && ch <= 'z' || ch >= 'A' && ch <= 'Z')
+                {
+                    tempstr.ToUpper();
+                    str.Add(tempstr);
+                }
             }
             n = str.Count;
         }
@@ -104,8 +109,7 @@ namespace homework_04
             MyCmp cmp = new MyCmp();
             str.Sort(cmp);//单词按照长度从小到大排序
             Swap(0, n - 2);//为保证不冲突,开始构造对角线时选择一个最长的单词
-            Swap(1, n - 1);
-            MessageBox.Show(Convert.ToString(n));
+            Swap(4, n - 1);
             string[] str1 = new string[4];//分别存对角线两种方向的单词
             string[] str2 = new string[4];
             for (int i = 0; i < 4; i++)
